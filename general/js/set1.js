@@ -42,7 +42,7 @@ const twoSum2 = function (nums, target) {
 */
 
 // Solution 1: Brute Force
-function singleNumber (nums) {
+function singleNumber1 (nums) {
   let single
   let dupFound = false
   for (let i = 0; i < nums.length; i++) {
@@ -61,10 +61,27 @@ function singleNumber (nums) {
   return single
 }
 
+// Solution 2
+var singleNumber2 = function(nums) {
+  let numHash = {}
+  let singleNumber
+  nums.forEach((val, index) => {
+      if (numHash[val]) {
+          numHash[val] = ++numHash[val]
+      } else {
+          numHash[val] = 1
+      }
+  })
+  for (const key in numHash) {
+      if (numHash[key] === 1) {
+          singleNumber = key
+      }
+  }
+  return singleNumber
+};
+
+
 const test1 = [4,1,2,1,2]
 const test2 = [1, 0, 1]
-console.log('single number is: ', singleNumber(test1))
-console.log('single number is: ', singleNumber(test2))
-
-
-
+console.log('single number is: ', singleNumber2(test1))
+console.log('single number is: ', singleNumber2(test2))
