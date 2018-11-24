@@ -96,6 +96,33 @@ const singleNumber3 = (nums) => {
   return Object.keys(numHash)[0]
 }
 
-console.log('single number is: ', singleNumber3(test1))
-console.log('single number is: ', singleNumber3(test2))
+/*
+  Given a 32-bit signed integer, reverse digits of an integer.
+*/
+
+const reverseInt1 = (x) => {
+  let num = x
+  let digits = []
+  // Check overflow for 32-bit signed initeger.
+  var reverseN = String(Math.abs(num)).split('').reverse().join('')
+  if (reverseN > 0x7FFFFFFF) {
+      return 0;
+  }
+  if (x == 0) {
+      return 0
+  }
+  if (x < 0) num *= -1
+  while (num > 0) {
+    digits[digits.length] = num % 10
+    num = parseInt(num/10)
+  }
+  let newNum = digits[0]
+  for (let i = 0; i < digits.length - 1; i++) {
+    newNum = newNum * 10 + digits[i+1]
+   }
+   if (x < 0) newNum *= -1
+   return newNum
+}
+
+console.log('reverse int 1 : ', reverseInt1(-123))
 
